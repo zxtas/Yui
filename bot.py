@@ -16,6 +16,13 @@ client = commands.Bot(command_prefix=";", intents = intents)
 async def on_ready():
     print(f"Success: {client.user} Online.")
 
+@client.command(aliases=['emoji','take'])
+async def steal(ctx, emoji: discord.PartialEmoji):
+    await ctx.send(emoji.url)
+
+@client.command
+async def upload(ctx, fil)
+
 @client.command(aliases=["ping", 'ms'])
 async def hey(ctx):
     await ctx.send("{0}ms." .format(round(client.latency * 1000)))
