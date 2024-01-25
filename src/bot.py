@@ -3,6 +3,8 @@ import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 import asyncio
+import fortnite_api
+
 
 load_dotenv()
 
@@ -11,6 +13,8 @@ token = os.getenv('token')
 intents = discord.Intents.all()
 
 client = commands.Bot(command_prefix=";", intents = intents)
+
+fortapi = fortnite_api.FortniteAPI()
 
 @client.event
 async def on_ready():
@@ -23,6 +27,11 @@ async def steal(ctx, emoji: discord.PartialEmoji):
 @client.command(aliases=["ping", 'ms'])
 async def hey(ctx):
     await ctx.send("{0}ms." .format(round(client.latency * 1000)))
+
+@client.command()
+async def fnshop(ctx):
+    shop = fortapi.shop.fetch()
+    ctx.send(shop)
 
 @client.command()
 @commands.has_permissions(ban_members = True)
