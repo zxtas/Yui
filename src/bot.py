@@ -31,8 +31,10 @@ async def hey(ctx):
 
 @client.command()
 async def fnshop(ctx):
-    shop = fortapi.shop.fetch()
-    ctx.send(shop)
+    # shoprequest = 
+    embed = discord.Embed(title="Daily Fn Shop!")
+    embed.set_image(url=data[""])
+    await ctx.send(embed = embed)
 
 @client.command()
 @commands.has_permissions(ban_members = True)
