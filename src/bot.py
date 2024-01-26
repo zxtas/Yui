@@ -3,7 +3,8 @@ import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 import asyncio
-import fortnite_api
+#import fortnite_api
+import random
 
 
 load_dotenv()
@@ -14,7 +15,7 @@ intents = discord.Intents.all()
 
 client = commands.Bot(command_prefix=";", intents = intents)
 
-fortapi = fortnite_api.FortniteAPI()
+#fortapi = fortnite_api.FortniteAPI()
 
 @client.event
 async def on_ready():
@@ -54,6 +55,17 @@ async def kick(ctx, member: discord.Member, *, reason = None):
     await member.send(message)
     await ctx.guild.kick(member, reason = reason)
     await ctx.channel.send(f'{ctx.message.author.mention} has kicked {member.mention} for {reason}')
+
+@client.command()
+async def roll(ctx, dice: str):
+    try:
+        rolls, limit = map(int, dice.split('d'))
+    except Exception:
+        await ctx.send("Format is not dice notation.")
+        return
+    
+    result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
+    await ctx.send(result)
 
 
 async def main():
