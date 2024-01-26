@@ -65,6 +65,13 @@ async def roll(ctx, dice: str):
     result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
     await ctx.send(result)
 
+@client.command()
+async def flip(ctx):
+    flip = random.randint(0,1)
+    if (flip == 0):
+       await ctx.send("Heads!")
+    else:
+        await ctx.send("Tails!")
 
 async def main():
     async with client:
