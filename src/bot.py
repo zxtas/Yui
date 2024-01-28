@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 import asyncio
+import youtube_dl
 #import fortnite_api
 import random
 
@@ -29,12 +30,12 @@ async def steal(ctx, emoji: discord.PartialEmoji):
 async def hey(ctx):
     await ctx.send("{0}ms." .format(round(client.latency * 1000)))
 
-@client.command()
-async def fnshop(ctx):
-    # shoprequest = 
-    embed = discord.Embed(title="Daily Fn Shop!")
-    embed.set_image(url=data[""])
-    await ctx.send(embed = embed)
+## @client.command()
+## async def fnshop(ctx):
+##     # shoprequest = 
+##     embed = discord.Embed(title="Daily Fn Shop!")
+##     embed.set_image(url=data[""])
+##     await ctx.send(embed = embed)
 
 @client.command()
 @commands.has_permissions(ban_members = True)
@@ -57,6 +58,16 @@ async def kick(ctx, member: discord.Member, *, reason = None):
     await ctx.channel.send(f'{ctx.message.author.mention} has kicked {member.mention} for {reason}')
 
 @client.command()
+async def pfp(ctx, member: discord.Member):
+    pfp = member.avatar.url
+    await ctx.send(pfp)
+
+@client.command()
+async def banner(ctx, member: discord.Member):
+    banner = member.banner.url
+    await ctx.send(banner)
+
+@client.command()
 async def roll(ctx, dice: str):
     try:
         rolls, limit = map(int, dice.split('d'))
@@ -74,6 +85,26 @@ async def flip(ctx):
        await ctx.send("Heads!")
     else:
         await ctx.send("Tails!")
+
+
+@client.command()
+async def join(ctx):
+    if not ctx.message.author.voice:
+        await ctx.send("You are not connected to a voice channel.")
+        return
+    else:
+        channel = ctx.message.author.voice.channel
+        await channel.connect()
+
+
+@client.command()
+async def leave(ctx):
+    voice_client = ctx.message.guid.voice_client
+    if voice_client.is_connected():
+        await voice_client.disconnect()
+    else:
+        await ctx.send("Not connected to a voice channel.")
+
 
 async def main():
     async with client:
