@@ -6,17 +6,20 @@ import asyncio
 import youtube_dl
 #import fortnite_api
 import random
+from openai import OpenAI
 
 
 load_dotenv()
 
 token = os.getenv('token')
 
+oaitoken = os.getenv('oaitoken')
+
 intents = discord.Intents.all()
 
 client = commands.Bot(command_prefix=";", intents = intents)
 
-#fortapi = fortnite_api.FortniteAPI()
+ClientAi = OpenAI(api_key= oaitoken)
 
 @client.event
 async def on_ready():
@@ -78,7 +81,7 @@ async def roll(ctx, dice: str):
     result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
     await ctx.send(result)
 
-@client.command()
+@client.command(aliases=['f','coin'])
 async def flip(ctx):
     flip = random.randint(0,1)
     if (flip == 0):
@@ -87,6 +90,32 @@ async def flip(ctx):
         await ctx.send("Tails!")
 
 
+@client.command(aliases=['r','ai'])
+async def request(ctx, *, question):
+    question1 = str(question)
+    response = ClientAi.chat.completions.create(
+        model = "gpt-4",
+        messages=[
+            {"role": "system", "content": "You are Yui, a virtual assistant."},
+            {"role": "user","content": question1 }
+        ]
+    )
+    await ctx.send(response.choices[0].message.content)
+
+@client.command()
+async def img(ctx, *, prompt):
+    prompt1 = str(prompt)
+    generated_image = ClientAi.images.generate(
+        model = 'dall-e-3',
+        prompt = f"I NEED to test how the tool works with extremely simple prompts. DO NOT add any detail, just use it AS-IS: {prompt1}",
+        size = "1792x1024",
+        quality="hd",
+        n=1,  
+    )
+    print(generated_image)
+    image_url = generated_image.data[0].url
+    await ctx.send(image_url)
+
 @client.command()
 async def join(ctx):
     if not ctx.message.author.voice:
@@ -94,8 +123,13 @@ async def join(ctx):
         return
     else:
         channel = ctx.message.author.voice.channel
-        await channel.connect()
+    await channel.connect()
 
+@client.command()
+@commands.has_permissions(manage_messages = True)
+async def clear(ctx, count):
+         await ctx.channel.purge(limit = int(count) + 1)
+         await ctx.send(f"Purged {count} messages!")
 
 @client.command()
 async def leave(ctx):
