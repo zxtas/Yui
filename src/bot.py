@@ -6,6 +6,7 @@ import asyncio
 import youtube_dl
 #import fortnite_api
 import random
+from gpt4all import GPT4All
 from openai import OpenAI
 
 
@@ -15,11 +16,16 @@ token = os.getenv('token')
 
 oaitoken = os.getenv('oaitoken')
 
+system_prompt = os.getenv('system_prompt')
+
 intents = discord.Intents.all()
 
 client = commands.Bot(command_prefix=";", intents = intents)
+ClientAi = OpenAI(api_key=oaitoken)
 
-ClientAi = OpenAI(api_key= oaitoken)
+# GPT4All Support
+## model = GPT4All("gpt4all-falcon-newbpe-q4_0.gguf", device='gpu')
+## system_template = ""
 
 @client.event
 async def on_ready():
@@ -33,6 +39,7 @@ async def steal(ctx, emoji: discord.PartialEmoji):
 async def hey(ctx):
     await ctx.send("{0}ms." .format(round(client.latency * 1000)))
 
+# Requires Access to a Fortnite API
 ## @client.command()
 ## async def fnshop(ctx):
 ##     # shoprequest = 
@@ -94,13 +101,15 @@ async def flip(ctx):
 async def request(ctx, *, question):
     question1 = str(question)
     response = ClientAi.chat.completions.create(
-        model = "gpt-4",
+        model = 'gpt-4',
         messages=[
-            {"role": "system", "content": "You are Yui, a virtual assistant."},
+            {"role": "system", "content": system_prompt},
             {"role": "user","content": question1 }
         ]
     )
+    print(response)
     await ctx.send(response.choices[0].message.content)
+    
 
 @client.command()
 async def img(ctx, *, prompt):
