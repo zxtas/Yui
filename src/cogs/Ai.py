@@ -47,6 +47,5 @@ class Ai(commands.Cog):
 
 
 
-
 async def setup(client):
     await client.add_cog(Ai(client))

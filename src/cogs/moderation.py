@@ -6,9 +6,11 @@ class Moderation(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+
     @commands.Cog.listener()
     async def on_ready(self):
         print("moderation.py success")
+
 
     @commands.command()
     @commands.has_permissions(ban_members = True)
@@ -29,7 +31,6 @@ class Moderation(commands.Cog):
         await member.send(message)
         await ctx.guild.kick(member, reason = reason)
         await ctx.channel.send(f'{ctx.message.author.mention} has kicked {member.mention} for {reason}')
-    
     
     @commands.command()
     @commands.has_permissions(manage_messages = True)
