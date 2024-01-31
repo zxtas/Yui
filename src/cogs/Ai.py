@@ -15,7 +15,7 @@ class Ai(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("fun.py success")
+        print("ai.py success")
 
     @commands.command(aliases=['r','ai'])
     async def request(self, ctx, *, question):

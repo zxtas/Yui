@@ -6,25 +6,14 @@ import asyncio
 import youtube_dl
 #import fortnite_api
 import random
-from gpt4all import GPT4All
-from openai import OpenAI
-import cogs.music as music
-
-cogs = [music]
-
 
 load_dotenv()
 
 token = os.getenv('token')
 
-oaitoken = os.getenv('oaitoken')
-
-system_prompt = os.getenv('system_prompt')
-
 intents = discord.Intents.all()
 
 client = commands.Bot(command_prefix=";", intents = intents)
-ClientAi = OpenAI(api_key=oaitoken)
 
 async def load():
      for filename in os.listdir("./src/cogs"):
