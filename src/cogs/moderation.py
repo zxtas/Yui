@@ -15,28 +15,31 @@ class Moderation(commands.Cog):
     @commands.command()
     @commands.has_permissions(ban_members = True)
     async def ban(self, ctx, member: discord.Member, *, reason = None):
-        if reason == None:
-            reason == "No Reason Provided."
-        message = f"You have been banned from {ctx.guild.name} for {reason}"
-        await member.send(message)
-        await ctx.guild.ban(member, reason = reason)
-        await ctx.channel.send(f'{ctx.message.author.mention} has Banned {member.mention} for {reason}')
+        async with ctx.typing():
+            if reason == None:
+                reason == "No Reason Provided."
+            message = f"You have been banned from {ctx.guild.name} for {reason}"
+            await member.send(message)
+            await ctx.guild.ban(member, reason = reason)
+            await ctx.channel.send(f'{ctx.message.author.mention} has Banned {member.mention} for {reason}')
 
     @commands.command()
     @commands.has_permissions(kick_members = True)
     async def kick(self, ctx, member: discord.Member, *, reason = None):
-        if reason == None:
-            reason == "No Reason Provided."
-        message = f"You have been kicked from {ctx.guild.name} for {reason}"
-        await member.send(message)
-        await ctx.guild.kick(member, reason = reason)
-        await ctx.channel.send(f'{ctx.message.author.mention} has kicked {member.mention} for {reason}')
+        async with ctx.typing():
+            if reason == None:
+                reason == "No Reason Provided."
+            message = f"You have been kicked from {ctx.guild.name} for {reason}"
+            await member.send(message)
+            await ctx.guild.kick(member, reason = reason)
+            await ctx.channel.send(f'{ctx.message.author.mention} has kicked {member.mention} for {reason}')
     
     @commands.command()
     @commands.has_permissions(manage_messages = True)
     async def clear(self, ctx, count):
-             await ctx.channel.purge(limit = int(count) + 1)
-             await ctx.send(f"Purged {count} messages!")
+             async with ctx.typing():
+                await ctx.channel.purge(limit = int(count) + 1)
+                await ctx.send(f"Purged {count} messages!")
 
 
 
