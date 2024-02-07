@@ -59,11 +59,7 @@ class Music(commands.Cog):
             await ctx.send("You are not in a voice channel!")
         voice_channel = ctx.author.voice.channel
         if ctx.voice_client is None:
-<<<<<<< HEAD
             await voice_channel.connect()
-=======
-            await ctx.voice_channel.connect()
->>>>>>> 89a80fedb2bb7319c7c40955400835adfa63d4aa
         else:
             await ctx.voice_client.move_to(voice_channel)
 
