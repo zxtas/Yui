@@ -14,7 +14,7 @@ class roi(commands.Cog):
 
 
     @commands.command(aliases=['bruh','crash'])
-    async def crashed(self, ctx):
+    async def afk(self, ctx):
         async with ctx.typing():
             count = open('./src/afk.txt', 'r')
             number = int(count.read())
@@ -22,8 +22,7 @@ class roi(commands.Cog):
             writenumber = open('./src/afk.txt', 'w')
             number = number+1
             number1 = writenumber.write(str(number))
-            await ctx.send('Looks like roi crashed again!')
-            await ctx.send(f'Crash Counter: {number}!')
+            await ctx.send(f'bro went afk for the {number}th time')
             writenumber.close
 
 
