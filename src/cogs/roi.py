@@ -22,7 +22,8 @@ class roi(commands.Cog):
             writenumber = open('./src/afk.txt', 'w')
             number = number+1
             number1 = writenumber.write(str(number))
-            await ctx.send(f'bro went afk for the {number}th time')
+            ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
+            await ctx.send(f'bro went afk for the {ordinal(number)} time')
             writenumber.close
 
 
