@@ -23,7 +23,7 @@ class roi(commands.Cog):
             number = number+1
             number1 = writenumber.write(str(number))
             ordinal = lambda n: "%d%s" % (n,"tsnrhtdd"[(n//10%10!=1)*(n%10<4)*n%10::4])
-            await ctx.send(f'bro went afk for the {ordinal(number)} time')
+            await ctx.send(f'roi went afk for the {ordinal(number)} time')
             writenumber.close
 
 
