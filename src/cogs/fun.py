@@ -1,6 +1,10 @@
 import discord
 from discord.ext import commands
 import random
+import requests
+import os
+import json
+xrapidapi = os.getenv('xrapidapi')
 
 class Fun(commands.Cog):
     def __init__(self, client):
@@ -46,9 +50,28 @@ class Fun(commands.Cog):
                 await ctx.send("Tails!")
 
     @commands.command(aliases=['emoji','take'])
-    async def steal(ctx, emoji: discord.PartialEmoji):
+    async def steal(self, ctx, emoji: discord.PartialEmoji):
         async with ctx.typing():
             await ctx.send(emoji.url)
+
+    @commands.command()
+    async def wyr(self, ctx):
+        async with ctx.typing():
+            url = "https://would-you-rather.p.rapidapi.com/wyr/random"
+        headers = {
+                	"X-RapidAPI-Key": f"{xrapidapi}",
+                	"X-RapidAPI-Host": "would-you-rather.p.rapidapi.com"
+                }
+        response = requests.get(url, headers=headers)
+        response_json = json.loads(response.text)
+        for findquestion in response_json:
+            await ctx.send(findquestion['question'])
+
+
+
+            
+
+
 
 
 
