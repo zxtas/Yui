@@ -28,8 +28,8 @@ class Ai(commands.Cog):
                     {"role": "user","content": question1 }
                 ]
             )
-            print(response)
-            await ctx.send(response.choices[0].message.content)
+            print(response.choices[0].message.content)
+            await ctx.send(response.choices[0].message.content[:2000])
 
 
     @commands.command()

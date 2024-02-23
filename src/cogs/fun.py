@@ -67,6 +67,13 @@ class Fun(commands.Cog):
         for findquestion in response_json:
             await ctx.send(findquestion['question'])
 
+    @commands.command()
+    async def poll(self, ctx, *, question):
+        async with ctx.typing():
+            await ctx.channel.purge(limit=1)
+            message = await ctx.send(f'Poll: {question}')
+            await message.add_reaction('✅') 
+            await message.add_reaction('❌')
 
 
             

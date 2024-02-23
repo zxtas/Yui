@@ -11,6 +11,11 @@ class Moderation(commands.Cog):
     async def on_ready(self):
         print("moderation.py success")
 
+#   Code for role on join, allow owner to set role id per server first.
+#   @commands.Cog.listener()
+#   async def on_member_join(self, member):
+#       role = discord.utils.get(member.server.roles, id='')
+#       await self.client.add_roles(member, role)
 
     @commands.command()
     @commands.has_permissions(ban_members = True)
@@ -40,6 +45,8 @@ class Moderation(commands.Cog):
              async with ctx.typing():
                 await ctx.channel.purge(limit = int(count) + 1)
                 await ctx.send(f"Purged {count} messages!")
+
+    
 
 
 
