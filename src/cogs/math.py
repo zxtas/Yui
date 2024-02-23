@@ -14,11 +14,11 @@ class math(commands.Cog):
     async def on_ready(self):
         print("math.py success")
         
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.author == self.client.user:
-            return
-        print(ast.literal_eval(f"{message.content}"))
+#    @commands.Cog.listener()
+#    async def on_message(self, message):
+#        if message.author == self.client.user:
+#            return
+#        print(ast.literal_eval(f"{message.content}"))
         
 
         
