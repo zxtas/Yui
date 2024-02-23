@@ -11,8 +11,9 @@ Reachable at @reohn on Discord for any questions, leave a message request please
 
 prerequisites to run in .env
 
-token = ''           # Discord api token to run bot.
-oaitoken = ''        # OpenAI Api token for GPT to run, NOTE: Set to GPT-4 and Dall-e-3, change if not within your budget.
-system_prompt = ''   # A prompt to "System:" for gpt-4, moved here incase you want to test different prompts in an easy access way.
-xrapidapi = ''       # Token for xrapidapi for would you rather command, accessable here, https://rapidapi.com/thunderapi-thunderapi-default/api/would-you-rather
-
+```
+ token = ''           # Discord api token to run bot.
+ oaitoken = ''        # OpenAI Api token for GPT to run, NOTE: Set to GPT-4 and Dall-e-3, change if not within your budget.
+ system_prompt = ''   # A prompt to "System:" for gpt-4, moved here incase you want to test different prompts in an easy access way.
+ xrapidapi = ''       # Token for xrapidapi for would you rather command, accessable here, https://rapidapi.com/thunderapi-thunderapi-default/api/would-you-rather
+```
