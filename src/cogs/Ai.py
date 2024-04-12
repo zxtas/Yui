@@ -22,14 +22,14 @@ class Ai(commands.Cog):
         async with ctx.typing():
             question1 = str(question)
             response = ClientAi.chat.completions.create(
-                model = 'gpt-4',
+                model = 'gpt-4-0125-preview',
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "user","content": question1 }
                 ]
             )
             print(response)
-            await ctx.send(response.choices[0].message.content)
+            await ctx.send(response.choices[0].message.content[:2000])
 
 
     @commands.command()

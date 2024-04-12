@@ -3,7 +3,6 @@ import discord
 from discord.ext import commands, tasks
 from dotenv import load_dotenv
 import asyncio
-import youtube_dl
 #import fortnite_api
 import random
 
@@ -16,7 +15,7 @@ intents = discord.Intents.all()
 client = commands.Bot(command_prefix=";", intents = intents)
 
 async def load():
-     for filename in os.listdir("./src/cogs"):
+     for filename in os.listdir("/home/container/Blair/src/cogs"):
         if filename.endswith(".py"):
             await client.load_extension(f"cogs.{filename[:-3]}")
         print(f"{filename[:-3]}")
