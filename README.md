@@ -11,6 +11,9 @@ Progress is for the most part halted, I intend to move onto new projects.
 
 Reachable at @reohn on Discord for any questions, leave a message request please. I do not accept people I do not know.
 
+[Invite Blair Here](https://discord.com/oauth2/authorize?client_id=1199464418514317443&permissions=8&scope=bot%20applications.commands)
+
+
 prerequisites to run in .env
 
 ```
