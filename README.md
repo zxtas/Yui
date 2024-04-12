@@ -1,5 +1,7 @@
 # Blair
-Discord Bot Written in Py.
+![6f05612d52a2729c32c467694a34b93d](https://github.com/zxtas/blair/assets/117494428/9c7425a0-8cb5-4aae-b15a-533f4cc51537)
+
+A Discord Bot Written in Py.
 
 For practice and fun, feel free to look through.
 

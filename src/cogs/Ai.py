@@ -28,7 +28,11 @@ class Ai(commands.Cog):
                     {"role": "user","content": question1 }
                 ]
             )
+<<<<<<< HEAD
             print(response)
+=======
+            print(response.choices[0].message.content)
+>>>>>>> f22d5e0e78c5ca3c60aaf389f3d6e8a28e2b859b
             await ctx.send(response.choices[0].message.content[:2000])
 
 
