@@ -13,27 +13,16 @@ class math(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print("math.py success")
-        
-#    @commands.Cog.listener()
-#    async def on_message(self, message):
-#        if message.author == self.client.user:
-#            return
-#        print(ast.literal_eval(f"{message.content}"))
-        
 
-        
+    @commands.command()
+    async def eval(self, ctx, *, expression: str):
+        async with ctx.typing():
+            try:
+                answer = numexpr.evaluate(expression)
 
-
-        #await message.channel.send(message.content)
-       # try
-       #    evaluation = eval(message)
-       #    ctx.send(evaluation)
-       # except:
-       #     return
-
-
-
-
+                await ctx.send(f"{answer}")
+            except:
+                await ctx.send("Invalid expression.")
 
 
 
